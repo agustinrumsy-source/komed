@@ -14,11 +14,13 @@ body {
     color: #f2f2f2;
 }
 
+/* ❌ Disable scroll */
 html, body {
-    overflow-y: auto;
+    overflow: hidden;
     height: 100%;
 }
 
+/* Header + Navigation */
 header {
     background: #1a1a1a;
     color: #ffffff;
@@ -48,17 +50,20 @@ nav a:hover {
     color: #00aaff;
 }
 
+/* Sections (NO SCROLLING) */
 .section {
     padding: 30px 20px;
     max-width: 900px;
     margin: auto;
     background: #1a1a1a;
-    min-height: calc(100vh - 150px);
-    overflow: auto;
+    height: calc(100vh - 150px); /* Fits screen */
     border-radius: 10px;
     color: #e6e6e6;
     box-shadow: 0 0 10px rgba(255,255,255,0.05);
     position: relative;
+
+    /* ❌ stop scroll inside sections */
+    overflow: hidden;
 }
 
 h2 {
@@ -94,7 +99,7 @@ h2 {
     transform: scale(1.05);
 }
 
-/* ---------- FULLSCREEN BATCHMATE ---------- */
+/* Fullscreen Batchmate */
 #batchmate {
     padding: 0 !important;
     margin: 0 !important;
@@ -115,7 +120,7 @@ h2 {
     object-fit: cover;
 }
 
-/* ---------- IMAGE MODAL ---------- */
+/* Image Modal */
 #imgModal {
     display: none;
     position: fixed;
@@ -137,11 +142,10 @@ h2 {
     border: 3px solid #00aaff;
 }
 
-/* ---------- BUTTONS ---------- */
-.next-btn {
+/* Navigation Buttons */
+.next-btn, .prev-btn {
     position: fixed;
     bottom: 40px;
-    right: 40px;
     background: #00aaff;
     color: #0d0d0d;
     border: none;
@@ -154,26 +158,12 @@ h2 {
     z-index: 1001;
 }
 
-.prev-btn {
-    position: fixed;
-    bottom: 40px;
-    left: 40px;
-    background: #00aaff;
-    color: #0d0d0d;
-    border: none;
-    padding: 12px 22px;
-    font-size: 16px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
-    z-index: 1001;
-}
-
-.next-btn:hover,
-.prev-btn:hover {
+.next-btn:hover, .prev-btn:hover {
     background: #0088cc;
 }
+
+.next-btn { right: 40px; }
+.prev-btn { left: 40px; }
 </style>
 </head>
 
@@ -193,7 +183,7 @@ h2 {
     <a href="#" onclick="openTab('batchmate')">MY BATCH MATE</a>
 </nav>
 
-<!-- ================= HOME ================= -->
+<!-- HOME -->
 <div class="section tab" id="home">
     <img src="phot me.jpg" style="width:260px;height:260px;border-radius:15px;object-fit:cover;display:block;margin:auto;margin-bottom:20px;border:3px solid #00aaff;">
     <h2>About Me</h2>
@@ -202,7 +192,7 @@ h2 {
     <p>Some of my hobbies are not really related to my course, but one of them is going on long rides with my motorcycle.</p>
 </div>
 
-<!-- ================= EDUCATION ================= -->
+<!-- EDUCATION -->
 <div class="section tab" id="education" style="display:none;">
     <h2>Education</h2>
     <ul class="edu-list">
@@ -228,59 +218,59 @@ h2 {
     </ul>
 </div>
 
-<!-- ================= ACHIEVEMENTS ================= -->
+<!-- ACHIEVEMENT -->
 <div class="section tab" id="achievement" style="display:none;">
     <h2>Achievements</h2>
     <ul class="ach-list">
         <li class="edu-item">
             <img src="5 (2).jpg" onclick="showImage(this.src)">
-            <div><strong>Senior Highschool Diploma:</strong> Completed the STEM strand at Baguio City National Science High School (2023-2025)</div>
+            <div><strong>Senior Highschool Diploma:</strong> Completed the STEM strand (2023–2025)</div>
         </li>
 
         <li class="edu-item">
             <img src="4 (2).jpg" onclick="showImage(this.src)">
-            <div><strong>Certificate of Good Conduct:</strong> Awarded for consistently demonstrating the core values (Makatao, Makadiyos, Makalikasan, Makabansa)</div>
+            <div><strong>Certificate of Good Conduct:</strong> Awarded for demonstrating the core values.</div>
         </li>
 
         <li class="edu-item">
             <img src="1 (2).jpg" onclick="showImage(this.src)">
-            <div><strong>Junior Highschool Certificate:</strong> Completed Junior High at Guisad Valley National Highschool (2023)</div>
+            <div><strong>Junior Highschool Certificate:</strong> Completed JHS at Guisad Valley NHS (2023)</div>
         </li>
     </ul>
 </div>
 
-<!-- ================= FAMILY ================= -->
+<!-- FAMILY -->
 <div class="section tab" id="family" style="display:none;">
     <h2>My Family</h2>
     <ul class="ach-list">
         <li class="edu-item">
             <img src="mother (2).jpg" onclick="showImage(this.src)">
-            <div><strong>Analyn Ayabbeo</strong> My mother is one of my biggest inspirations. She has supported me in everything I do and continues to motivate me to become a better person.</div>
+            <div><strong>Analyn Ayabbeo:</strong> My mother inspires and motivates me.</div>
         </li>
 
         <li class="edu-item">
             <img src="unnamed.jpg" onclick="showImage(this.src)">
-            <div><strong>Tamie Agustin:</strong> My father is one of my strongest supporters. He motivates me to keep improving and always gives me guidance when I need it.</div>
+            <div><strong>Tamie Agustin:</strong> My father guides and supports me.</div>
         </li>
 
         <li class="edu-item">
             <img src="SIBLINGS.jpg" onclick="showImage(this.src)">
-            <div><strong>Herbie Agustin:</strong> My sister is an important part of my life. She inspires me with her positivity and encourages me to stay focused on my goals.</div>
+            <div><strong>Herbie Agustin:</strong> My sister always encourages me.</div>
         </li>
     </ul>
 </div>
 
-<!-- ================= FULLSCREEN BATCHMATE ================= -->
+<!-- FULLSCREEN BATCHMATE -->
 <div class="section tab" id="batchmate" style="display:none;">
     <img src="batch1.jpg">
 </div>
 
-<!-- ================= IMAGE MODAL ================= -->
+<!-- IMAGE MODAL -->
 <div id="imgModal" onclick="closeModal()">
     <img id="modalImg">
 </div>
 
-<!-- ================= FLOATING BUTTONS ================= -->
+<!-- BUTTONS -->
 <button class="next-btn" onclick="nextTab()">Next →</button>
 <button class="prev-btn" onclick="prevTab()">← Previous</button>
 
@@ -311,11 +301,11 @@ function openTab(tabName) {
     if (tabName === 'home') {
         prevBtn.style.display = 'none';
         nextBtn.style.display = 'block';
-    } 
+    }
     else if (tabName === 'batchmate') {
         prevBtn.style.display = 'block';
         nextBtn.style.display = 'none';
-    } 
+    }
     else {
         prevBtn.style.display = 'block';
         nextBtn.style.display = 'block';
@@ -349,7 +339,6 @@ function closeModal() {
     document.getElementById("imgModal").style.display = "none";
 }
 
-/* ✅ IMPORTANT FIX */
 openTab('home');
 </script>
 
