@@ -1,115 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta-name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #0d0d0d;
-            color: #f2f2f2;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
 
-        /* Disable vertical scrolling */
-        html, body {
-            overflow-y: hidden;
-            height: 100%;
-        }
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0d0d0d;
+    color: #f2f2f2;
+}
 
-        header {
-            background: #1a1a1a;
-            color: #ffffff;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        nav {
-            text-align: center;
-            background: #111;
-            padding: 12px 0;
-            border-bottom: 1px solid #333;
-        }
-        nav a {
-            color: #f2f2f2;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            color: #00aaff;
-        }
+html, body {
+    overflow-y: auto;
+    height: 100%;
+}
 
-        /* Fullscreen sections */
-        .section {
-            padding: 30px 20px;
-            max-width: 900px;
-            margin: auto;
-            background: #1a1a1a;
-            height: calc(100vh - 150px); /* fits screen minus header + nav */
-            overflow: hidden;
-            border-radius: 10px;
-            color: #e6e6e6;
-            box-shadow: 0 0 10px rgba(255,255,255,0.05);
-        }
+header {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
 
-        h2 {
-            margin-top: 0;
-            color: #00aaff;
-        }
-        .edu-list li, .ach-list li {
-            background: #262626;
-            border: 1px solid #333;
-            margin: 10px 0;
-            padding: 12px;
-            border-radius: 8px;
-            color: #f2f2f2;
-        }
-        .edu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .edu-item img {
-            flex-shrink: 0;
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            object-fit: cover;
-            border: 2px solid #00aaff;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-        .edu-item img:hover {
-            transform: scale(1.05);
-        }
+nav {
+    text-align: center;
+    background: #111;
+    padding: 12px 0;
+    border-bottom: 1px solid #333;
+    z-index: 1;
+    position: relative;
+}
 
-        /* --- ZOOM POPUP STYLES --- */
-        #imgModal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
-        #imgModal img {
-            max-width: 90%;
-            max-height: 90%;
-            width: auto;
-            height: auto;
-            border-radius: 10px;
-            border: 3px solid #00aaff;
-            box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
-        }
-    </style>
+nav a {
+    color: #f2f2f2;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #00aaff;
+}
+
+.section {
+    padding: 30px 20px;
+    max-width: 900px;
+    margin: auto;
+    background: #1a1a1a;
+    min-height: calc(100vh - 150px);
+    overflow: auto;
+    border-radius: 10px;
+    color: #e6e6e6;
+    box-shadow: 0 0 10px rgba(255,255,255,0.05);
+    position: relative;
+}
+
+h2 {
+    margin-top: 0;
+    color: #00aaff;
+}
+
+.edu-list li, .ach-list li {
+    background: #262626;
+    border: 1px solid #333;
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.edu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.edu-item img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid #00aaff;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.edu-item img:hover {
+    transform: scale(1.05);
+}
+
+/* ---------- FULLSCREEN BATCHMATE ---------- */
+#batchmate {
+    padding: 0 !important;
+    margin: 0 !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    border-radius: 0 !important;
+    z-index: 999;
+    background: black;
+}
+
+#batchmate img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---------- IMAGE MODAL ---------- */
+#imgModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#imgModal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    border: 3px solid #00aaff;
+}
+
+/* ---------- BUTTONS ---------- */
+.next-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background: #00aaff;
+    color: #0d0d0d;
+    border: none;
+    padding: 12px 22px;
+    font-size: 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 1001;
+}
+
+.prev-btn {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    background: #00aaff;
+    color: #0d0d0d;
+    border: none;
+    padding: 12px 22px;
+    font-size: 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 1001;
+}
+
+.next-btn:hover,
+.prev-btn:hover {
+    background: #0088cc;
+}
+</style>
 </head>
+
 <body>
 
 <header>
@@ -123,95 +190,154 @@
     <a href="#" onclick="openTab('education')">EDUCATION</a>
     <a href="#" onclick="openTab('achievement')">ACHIEVEMENT</a>
     <a href="#" onclick="openTab('family')">FAMILY</a>
+    <a href="#" onclick="openTab('batchmate')">MY BATCH MATE</a>
 </nav>
 
+<!-- ================= HOME ================= -->
 <div class="section tab" id="home">
-    <img src="phot me.jpg" alt="Profile Photo" style="width:260px;height:260px;border-radius:15px;object-fit:cover;display:block;margin:auto;margin-bottom:20px;border:3px solid #00aaff;">
+    <img src="phot me.jpg" style="width:260px;height:260px;border-radius:15px;object-fit:cover;display:block;margin:auto;margin-bottom:20px;border:3px solid #00aaff;">
     <h2>About Me</h2>
     <p>My name is Jhon Rumsy Agustin and I live in San Carlos, Irisan. I decided to attend the University of the Cordilleras because of its unique tri-semester system. This system helps students like me graduate early if they dedicate themselves and stay committed to their study.</p>
     <p>I am currently pursuing a degree in Information Technology. My interest in technology began when I got my first PC and enjoyed playing video games. Since then, I became curious about how coding works and wanted to try it for myself.</p>
     <p>Some of my hobbies are not really related to my course, but one of them is going on long rides with my motorcycle.</p>
 </div>
 
+<!-- ================= EDUCATION ================= -->
 <div class="section tab" id="education" style="display:none;">
     <h2>Education</h2>
     <ul class="edu-list">
         <li class="edu-item">
-            <img src="OIP (5) (1).jpg" alt="Balili Elementary School Logo" onclick="showImage(this.src)">
+            <img src="OIP (5) (1).jpg" onclick="showImage(this.src)">
             <div><strong>Elementary School:</strong> Balili Elementary School (2012-2017)</div>
         </li>
 
         <li class="edu-item">
-            <img src="OIP (4) (1).jpg" alt="Guisad Valley National High School Logo" onclick="showImage(this.src)">
+            <img src="OIP (4) (1).jpg" onclick="showImage(this.src)">
             <div><strong>Junior Highschool:</strong> Guisad Valley National Highschool (2018-2023)</div>
         </li>
 
         <li class="edu-item">
-            <img src="OIP (3) (1).jpg" alt="Baguio City National Science High School Logo" onclick="showImage(this.src)">
+            <img src="OIP (3) (1).jpg" onclick="showImage(this.src)">
             <div><strong>Senior Highschool:</strong> Baguio City National Science Highschool (2023-2025) - STEM</div>
         </li>
 
         <li class="edu-item">
-            <img src="3_UC_Logo-new_350 (1).jpg" alt="University of the Cordilleras Logo" onclick="showImage(this.src)">
-            <div><strong>College:</strong> University of Cordillera (2025-Present) - BS Information Technology</div>
+            <img src="3_UC_Logo-new_350 (1).jpg" onclick="showImage(this.src)">
+            <div><strong>College:</strong> University of the Cordillera (2025-Present) - BS Information Technology</div>
         </li>
     </ul>
 </div>
 
+<!-- ================= ACHIEVEMENTS ================= -->
 <div class="section tab" id="achievement" style="display:none;">
     <h2>Achievements</h2>
     <ul class="ach-list">
         <li class="edu-item">
-            <img src="5 (2).jpg" alt="STEM Diploma" onclick="showImage(this.src)">
+            <img src="5 (2).jpg" onclick="showImage(this.src)">
             <div><strong>Senior Highschool Diploma:</strong> Completed the STEM strand at Baguio City National Science High School (2023-2025)</div>
         </li>
 
         <li class="edu-item">
-            <img src="4 (2).jpg" alt="Certificate of Good Conduct" onclick="showImage(this.src)">
+            <img src="4 (2).jpg" onclick="showImage(this.src)">
             <div><strong>Certificate of Good Conduct:</strong> Awarded for consistently demonstrating the core values (Makatao, Makadiyos, Makalikasan, Makabansa)</div>
         </li>
 
         <li class="edu-item">
-            <img src="1 (2).jpg" alt="Junior High Certificate" onclick="showImage(this.src)">
+            <img src="1 (2).jpg" onclick="showImage(this.src)">
             <div><strong>Junior Highschool Certificate:</strong> Completed Junior High at Guisad Valley National Highschool (2023)</div>
         </li>
     </ul>
 </div>
 
+<!-- ================= FAMILY ================= -->
 <div class="section tab" id="family" style="display:none;">
     <h2>My Family</h2>
-    <p>Here are the people who inspire me every day.</p>
     <ul class="ach-list">
-        
         <li class="edu-item">
-            <img src="mother (2).jpg" alt="" onclick="showImage(this.src)">
-            <div><strong>My Mother:</strong> My mother is one of my biggest inspirations. She has supported me in everything I do and continues to motivate me to become a better person.</div>
+            <img src="mother (2).jpg" onclick="showImage(this.src)">
+            <div><strong>Analyn Ayabbeo</strong> My mother is one of my biggest inspirations. She has supported me in everything I do and continues to motivate me to become a better person.</div>
         </li>
 
         <li class="edu-item">
-            <img src="unnamed.jpg" alt="Family Picture 2" onclick="showImage(this.src)">
-            <div><strong>My Father:</strong> My father is one of my strongest supporters. He motivates me to keep improving and always gives me guidance when I need it.</div>
+            <img src="unnamed.jpg" onclick="showImage(this.src)">
+            <div><strong>Tamie Agustin:</strong> My father is one of my strongest supporters. He motivates me to keep improving and always gives me guidance when I need it.</div>
         </li>
 
         <li class="edu-item">
-            <img src="SIBLINGS.jpg" alt="Family Picture 3" onclick="showImage(this.src)">
-            <div><strong>Sibling:</strong> My sister is an important part of my life. She inspires me with her positivity and encourages me to stay focused on my goals.</div>
+            <img src="SIBLINGS.jpg" onclick="showImage(this.src)">
+            <div><strong>Herbie Agustin:</strong> My sister is an important part of my life. She inspires me with her positivity and encourages me to stay focused on my goals.</div>
         </li>
-
     </ul>
 </div>
 
+<!-- ================= FULLSCREEN BATCHMATE ================= -->
+<div class="section tab" id="batchmate" style="display:none;">
+    <img src="batch1.jpg">
+</div>
+
+<!-- ================= IMAGE MODAL ================= -->
 <div id="imgModal" onclick="closeModal()">
     <img id="modalImg">
 </div>
 
+<!-- ================= FLOATING BUTTONS ================= -->
+<button class="next-btn" onclick="nextTab()">Next →</button>
+<button class="prev-btn" onclick="prevTab()">← Previous</button>
+
 <script>
+var tabs = ['home','education','achievement','family','batchmate'];
+
 function openTab(tabName) {
-    var tabs = document.getElementsByClassName('tab');
     for (var i = 0; i < tabs.length; i++) {
-        tabs[i].style.display = 'none';
+        document.getElementById(tabs[i]).style.display = 'none';
     }
+
     document.getElementById(tabName).style.display = 'block';
+
+    let header = document.querySelector('header');
+    let nav = document.querySelector('nav');
+
+    if (tabName === 'batchmate') {
+        header.style.display = 'none';
+        nav.style.display = 'none';
+    } else {
+        header.style.display = 'block';
+        nav.style.display = 'block';
+    }
+
+    var prevBtn = document.querySelector('.prev-btn');
+    var nextBtn = document.querySelector('.next-btn');
+
+    if (tabName === 'home') {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'block';
+    } 
+    else if (tabName === 'batchmate') {
+        prevBtn.style.display = 'block';
+        nextBtn.style.display = 'none';
+    } 
+    else {
+        prevBtn.style.display = 'block';
+        nextBtn.style.display = 'block';
+    }
+}
+
+function nextTab() {
+    for (let i = 0; i < tabs.length; i++) {
+        if (document.getElementById(tabs[i]).style.display === 'block') {
+            openTab(tabs[i + 1] || tabs[0]);
+            return;
+        }
+    }
+}
+
+function prevTab() {
+    for (let i = 0; i < tabs.length; i++) {
+        if (document.getElementById(tabs[i]).style.display === 'block') {
+            openTab(tabs[i - 1] || tabs[tabs.length - 1]);
+            return;
+        }
+    }
 }
 
 function showImage(src) {
@@ -222,6 +348,9 @@ function showImage(src) {
 function closeModal() {
     document.getElementById("imgModal").style.display = "none";
 }
+
+/* ✅ IMPORTANT FIX */
+openTab('home');
 </script>
 
 </body>
