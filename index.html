@@ -142,10 +142,17 @@ h2 {
     border: 3px solid #00aaff;
 }
 
-/* Navigation Buttons */
-.next-btn, .prev-btn {
+/* Navigation Buttons (BOTTOM RIGHT) */
+.button-container {
     position: fixed;
     bottom: 40px;
+    right: 40px;
+    display: flex;
+    gap: 10px;
+    z-index: 1001;
+}
+
+.next-btn, .prev-btn {
     background: #00aaff;
     color: #0d0d0d;
     border: none;
@@ -155,15 +162,11 @@ h2 {
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
-    z-index: 1001;
 }
 
 .next-btn:hover, .prev-btn:hover {
     background: #0088cc;
 }
-
-.next-btn { right: 40px; }
-.prev-btn { left: 40px; }
 </style>
 </head>
 
@@ -271,8 +274,10 @@ h2 {
 </div>
 
 <!-- BUTTONS -->
-<button class="next-btn" onclick="nextTab()">Next →</button>
-<button class="prev-btn" onclick="prevTab()">← Previous</button>
+<div class="button-container">
+    <button class="prev-btn" onclick="prevTab()">← Previous</button>
+    <button class="next-btn" onclick="nextTab()">Next →</button>
+</div>
 
 <script>
 var tabs = ['home','education','achievement','family','batchmate'];
@@ -295,20 +300,19 @@ function openTab(tabName) {
         nav.style.display = 'block';
     }
 
-    var prevBtn = document.querySelector('.prev-btn');
-    var nextBtn = document.querySelector('.next-btn');
+    // Hide/show buttons based on tab
+    let prevBtn = document.querySelector('.prev-btn');
+    let nextBtn = document.querySelector('.next-btn');
 
     if (tabName === 'home') {
         prevBtn.style.display = 'none';
-        nextBtn.style.display = 'block';
-    }
-    else if (tabName === 'batchmate') {
-        prevBtn.style.display = 'block';
+        nextBtn.style.display = 'inline-block';
+    } else if (tabName === 'batchmate') {
         nextBtn.style.display = 'none';
-    }
-    else {
-        prevBtn.style.display = 'block';
-        nextBtn.style.display = 'block';
+        prevBtn.style.display = 'inline-block';
+    } else {
+        prevBtn.style.display = 'inline-block';
+        nextBtn.style.display = 'inline-block';
     }
 }
 
@@ -344,5 +348,3 @@ openTab('home');
 
 </body>
 </html>
-
-
