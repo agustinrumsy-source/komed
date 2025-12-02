@@ -3,169 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio</title>
+<title>Jhon Rumsy Agustin | Portfolio</title>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
+/* --- 1. SETUP FULLSCREEN LAYOUT --- */
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
     background: #0d0d0d;
     color: #f2f2f2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    overflow: hidden; /* ❌ STRICTLY NO BODY SCROLL */
+    display: flex;    /* ✅ Use Flexbox to stack elements */
+    flex-direction: column;
 }
 
-/* ❌ Disable scroll */
-html, body {
-    overflow: hidden;
-    height: 100%;
-}
-
-/* Header + Navigation */
+/* --- 2. HEADER & NAV (Fixed at top) --- */
 header {
     background: #1a1a1a;
-    color: #ffffff;
-    padding: 40px 20px;
+    padding: 20px;
     text-align: center;
-    z-index: 1;
-    position: relative;
+    border-bottom: 2px solid #00aaff;
+    flex-shrink: 0; /* Prevent header from squishing */
 }
 
 nav {
-    text-align: center;
     background: #111;
-    padding: 12px 0;
+    padding: 10px 0;
+    text-align: center;
     border-bottom: 1px solid #333;
-    z-index: 1;
-    position: relative;
+    flex-shrink: 0; /* Prevent nav from squishing */
 }
 
 nav a {
-    color: #f2f2f2;
+    color: #ccc;
     margin: 0 15px;
     text-decoration: none;
     font-weight: bold;
+    font-size: 14px;
+    transition: 0.3s;
 }
 
-nav a:hover {
-    color: #00aaff;
-}
+nav a:hover { color: #00aaff; }
 
-/* Sections (NO SCROLLING) */
+/* --- 3. MAIN CONTENT (Fills remaining space) --- */
 .section {
-    padding: 30px 20px;
-    max-width: 900px;
-    margin: auto;
+    /* Auto-fill remaining height */
+    flex-grow: 1; 
+    
+    /* Center the box */
+    width: 90%; 
+    max-width: 1000px;
+    margin: 20px auto; 
+    
+    /* Visuals */
     background: #1a1a1a;
-    height: calc(100vh - 150px); /* Fits screen */
-    border-radius: 10px;
-    color: #e6e6e6;
-    box-shadow: 0 0 10px rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 170, 255, 0.1);
     position: relative;
 
-    /* ❌ stop scroll inside sections */
-    overflow: hidden;
+    /* ✅ INTERNAL SCROLLING */
+    /* The box scrolls, the page does not. */
+    overflow-y: auto; 
+    
+    /* Add padding at bottom so buttons don't cover text */
+    padding-bottom: 80px; 
 }
 
-h2 {
-    margin-top: 0;
-    color: #00aaff;
-}
+/* Custom Scrollbar Styling (Make it look cool) */
+.section::-webkit-scrollbar { width: 8px; }
+.section::-webkit-scrollbar-track { background: #1a1a1a; }
+.section::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+.section::-webkit-scrollbar-thumb:hover { background: #00aaff; }
 
-.edu-list li, .ach-list li {
-    background: #262626;
-    border: 1px solid #333;
-    margin: 10px 0;
-    padding: 12px;
-    border-radius: 8px;
-}
+/* --- 4. CONTENT STYLES --- */
+h2 { color: #00aaff; border-bottom: 1px solid #333; padding-bottom: 10px; }
 
-.edu-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.edu-item img {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
+/* Profile Image */
+.profile-pic {
+    width: 200px; height: 200px;
+    border-radius: 15px;
     object-fit: cover;
-    border: 2px solid #00aaff;
-    transition: 0.2s;
-    cursor: pointer;
-}
-
-.edu-item img:hover {
-    transform: scale(1.05);
-}
-
-/* Fullscreen Batchmate */
-#batchmate {
-    padding: 0 !important;
-    margin: 0 !important;
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100vw !important;
-    height: 100vh !important;
-    max-width: none !important;
-    border-radius: 0 !important;
-    z-index: 999;
-    background: black;
-}
-
-#batchmate img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Image Modal */
-#imgModal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-#imgModal img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
+    display: block;
+    margin: 0 auto 20px auto;
     border: 3px solid #00aaff;
 }
 
-/* Navigation Buttons (BOTTOM RIGHT) */
+/* List Items */
+.edu-list, .ach-list { list-style: none; padding: 0; }
+.edu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #262626;
+    border: 1px solid #333;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    transition: 0.2s;
+}
+.edu-item:hover { background: #333; border-color: #00aaff; }
+
+.edu-item img {
+    width: 70px; height: 70px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 2px solid #00aaff;
+    cursor: pointer;
+    flex-shrink: 0; /* Don't squash images on small screens */
+}
+
+/* --- 5. FLOATING BUTTONS --- */
 .button-container {
     position: fixed;
-    bottom: 40px;
+    bottom: 30px;
     right: 40px;
-    display: flex;
-    gap: 10px;
-    z-index: 1001;
+    z-index: 100; /* Ensure they float above everything */
 }
 
 .next-btn, .prev-btn {
     background: #00aaff;
-    color: #0d0d0d;
+    color: #000;
     border: none;
-    padding: 12px 22px;
-    font-size: 16px;
-    border-radius: 8px;
+    padding: 10px 20px;
     font-weight: bold;
+    border-radius: 50px;
     cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     transition: 0.2s;
 }
+.next-btn:hover, .prev-btn:hover { background: #fff; transform: scale(1.05); }
 
-.next-btn:hover, .prev-btn:hover {
-    background: #0088cc;
+/* --- 6. SPECIAL OVERLAYS --- */
+/* Batchmate (Fullscreen) */
+#batchmate {
+    position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: black;
+    z-index: 90;
+    padding: 0; margin: 0;
+}
+#batchmate img { width: 100%; height: 100%; object-fit: contain; }
+
+/* Image Modal */
+#imgModal {
+    display: none; position: fixed;
+    z-index: 200; left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9);
+    justify-content: center; align-items: center;
+}
+#imgModal img { max-width: 90%; max-height: 90%; border: 2px solid #00aaff; border-radius: 8px; }
+
+/* --- 7. LAPTOP SPECIFIC MEDIA QUERIES --- */
+/* If the screen height is short (Small Laptops) */
+@media (max-height: 700px) {
+    header { padding: 10px; }
+    header h1 { font-size: 20px; margin: 0; }
+    header p { display: none; } /* Hide subtext to save space */
+    .profile-pic { width: 150px; height: 150px; }
+    .section { margin: 10px auto; padding: 20px; }
 }
 </style>
 </head>
@@ -174,8 +173,7 @@ h2 {
 
 <header>
     <h1>PORTFOLIO</h1>
-    <p>Jhon Rumsy Agustin</p>
-    <p>Bachelor of Science in Information Technology Student</p>
+    <p>Jhon Rumsy Agustin | BS Information Technology</p>
 </header>
 
 <nav>
@@ -183,67 +181,55 @@ h2 {
     <a href="#" onclick="openTab('education')">EDUCATION</a>
     <a href="#" onclick="openTab('achievement')">ACHIEVEMENT</a>
     <a href="#" onclick="openTab('family')">FAMILY</a>
-    <a href="#" onclick="openTab('batchmate')">MY BATCH MATE</a>
+    <a href="#" onclick="openTab('batchmate')">BATCHMATES</a>
 </nav>
 
-<!-- HOME -->
-<div class="section tab" id="home">
-    <img src="phot me.jpg" style="width:260px;height:260px;border-radius:15px;object-fit:cover;display:block;margin:auto;margin-bottom:20px;border:3px solid #00aaff;">
+<div class="section" id="home">
+    <img src="phot me.jpg" class="profile-pic">
+    
     <h2>About Me</h2>
     <p>My name is Jhon Rumsy Agustin and I live in San Carlos, Irisan. I decided to attend the University of the Cordilleras because of its unique tri-semester system. This system helps students like me graduate early if they dedicate themselves and stay committed to their study.</p>
     <p>I am currently pursuing a degree in Information Technology. My interest in technology began when I got my first PC and enjoyed playing video games. Since then, I became curious about how coding works and wanted to try it for myself.</p>
     <p>Some of my hobbies are not really related to my course, but one of them is going on long rides with my motorcycle.</p>
 </div>
 
-<!-- EDUCATION -->
-<div class="section tab" id="education" style="display:none;">
+<div class="section" id="education" style="display:none;">
     <h2>Education</h2>
     <ul class="edu-list">
         <li class="edu-item">
             <img src="OIP (5) (1).jpg" onclick="showImage(this.src)">
-            <div><strong>Elementary School:</strong> Balili Elementary School (2012-2017)</div>
+            <div><strong>Elementary:</strong> Balili Elementary School (2012-2017)</div>
         </li>
-
         <li class="edu-item">
             <img src="OIP (4) (1).jpg" onclick="showImage(this.src)">
-            <div><strong>Junior Highschool:</strong> Guisad Valley National Highschool (2018-2023)</div>
+            <div><strong>Junior HS:</strong> Guisad Valley National Highschool (2018-2023)</div>
         </li>
-
         <li class="edu-item">
             <img src="OIP (3) (1).jpg" onclick="showImage(this.src)">
-            <div><strong>Senior Highschool:</strong> Baguio City National Science Highschool (2023-2025) - STEM</div>
+            <div><strong>Senior HS:</strong> Baguio City National Science HS (2023-2025) - STEM</div>
         </li>
-
         <li class="edu-item">
             <img src="3_UC_Logo-new_350 (1).jpg" onclick="showImage(this.src)">
-            <div><strong>College:</strong> University of the Cordillera (2025-Present) - BS Information Technology</div>
+            <div><strong>College:</strong> University of the Cordilleras (2025-Present)</div>
         </li>
     </ul>
 </div>
 
-<!-- ACHIEVEMENT -->
-<div class="section tab" id="achievement" style="display:none;">
+<div class="section" id="achievement" style="display:none;">
     <h2>Achievements</h2>
     <ul class="ach-list">
         <li class="edu-item">
             <img src="5 (2).jpg" onclick="showImage(this.src)">
-            <div><strong>Senior Highschool Diploma:</strong> Completed the STEM strand (2023–2025)</div>
+            <div><strong>SHS Diploma:</strong> Completed STEM strand with honors.</div>
         </li>
-
         <li class="edu-item">
             <img src="4 (2).jpg" onclick="showImage(this.src)">
-            <div><strong>Certificate of Good Conduct:</strong> Awarded for demonstrating the core values.</div>
-        </li>
-
-        <li class="edu-item">
-            <img src="1 (2).jpg" onclick="showImage(this.src)">
-            <div><strong>Junior Highschool Certificate:</strong> Completed JHS at Guisad Valley NHS (2023)</div>
+            <div><strong>Certificate of Good Conduct:</strong> Awarded for core values.</div>
         </li>
     </ul>
 </div>
 
-<!-- FAMILY -->
-<div class="section tab" id="family" style="display:none;">
+<div class="section" id="family" style="display:none;">
     <h2>My Family</h2>
     <ul class="ach-list">
         <li class="edu-item">
@@ -263,17 +249,14 @@ h2 {
     </ul>
 </div>
 
-<!-- FULLSCREEN BATCHMATE -->
-<div class="section tab" id="batchmate" style="display:none;">
-    <img src="ball.png">
+<div id="batchmate" style="display:none;">
+    <img src="ball.png" alt="Batchmates">
 </div>
 
-<!-- IMAGE MODAL -->
 <div id="imgModal" onclick="closeModal()">
     <img id="modalImg">
 </div>
 
-<!-- BUTTONS -->
 <div class="button-container">
     <button class="prev-btn" onclick="prevTab()">← Previous</button>
     <button class="next-btn" onclick="nextTab()">Next →</button>
@@ -281,17 +264,23 @@ h2 {
 
 <script>
 var tabs = ['home','education','achievement','family','batchmate'];
+var currentTab = 'home';
 
 function openTab(tabName) {
-    for (var i = 0; i < tabs.length; i++) {
-        document.getElementById(tabs[i]).style.display = 'none';
-    }
+    // Hide all sections
+    tabs.forEach(t => {
+        var el = document.getElementById(t);
+        if(el) el.style.display = 'none';
+    });
 
-    document.getElementById(tabName).style.display = 'block';
+    // Show selected
+    document.getElementById(tabName).style.display = (tabName === 'batchmate') ? 'block' : 'block';
+    currentTab = tabName;
 
+    // Handle Header Visibility for Batchmate
     let header = document.querySelector('header');
     let nav = document.querySelector('nav');
-
+    
     if (tabName === 'batchmate') {
         header.style.display = 'none';
         nav.style.display = 'none';
@@ -300,38 +289,22 @@ function openTab(tabName) {
         nav.style.display = 'block';
     }
 
-    // Hide/show buttons based on tab
+    // Handle Buttons
     let prevBtn = document.querySelector('.prev-btn');
     let nextBtn = document.querySelector('.next-btn');
 
-    if (tabName === 'home') {
-        prevBtn.style.display = 'none';
-        nextBtn.style.display = 'inline-block';
-    } else if (tabName === 'batchmate') {
-        nextBtn.style.display = 'none';
-        prevBtn.style.display = 'inline-block';
-    } else {
-        prevBtn.style.display = 'inline-block';
-        nextBtn.style.display = 'inline-block';
-    }
+    prevBtn.style.display = (tabName === 'home') ? 'none' : 'inline-block';
+    nextBtn.style.display = (tabName === 'batchmate') ? 'none' : 'inline-block';
 }
 
 function nextTab() {
-    for (let i = 0; i < tabs.length; i++) {
-        if (document.getElementById(tabs[i]).style.display === 'block') {
-            openTab(tabs[i + 1] || tabs[0]);
-            return;
-        }
-    }
+    let idx = tabs.indexOf(currentTab);
+    if (idx < tabs.length - 1) openTab(tabs[idx + 1]);
 }
 
 function prevTab() {
-    for (let i = 0; i < tabs.length; i++) {
-        if (document.getElementById(tabs[i]).style.display === 'block') {
-            openTab(tabs[i - 1] || tabs[tabs.length - 1]);
-            return;
-        }
-    }
+    let idx = tabs.indexOf(currentTab);
+    if (idx > 0) openTab(tabs[idx - 1]);
 }
 
 function showImage(src) {
@@ -343,11 +316,9 @@ function closeModal() {
     document.getElementById("imgModal").style.display = "none";
 }
 
+// Init
 openTab('home');
 </script>
 
 </body>
 </html>
-
-
-
